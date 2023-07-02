@@ -1,6 +1,7 @@
 package Bindings;
 
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -29,7 +30,7 @@ public class StepDefinitions {
 
     @Before
     public void initialization(){
-        System.setProperty("webdriver.chrome.driver","C:\\Users\\paperspace\\Downloads\\selenium items\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","C:\\Users\\jovan\\Downloads\\chromedriver_win32 (2)\\chromedriver.exe");
         option = new ChromeOptions();
         option.addArguments("--window-size-1366,656");
         //option.addArguments("headless");
@@ -39,6 +40,11 @@ public class StepDefinitions {
         action = new Actions(driver);
         wait = new WebDriverWait(driver,30);
         js = (JavascriptExecutor) driver;
+    }
+    @After
+    public void Exit() {
+        driver.quit();
+
     }
 
     @Given("^login page$")
@@ -115,4 +121,44 @@ public class StepDefinitions {
     }
 
 
+    @Given("Start Browser with google.com")
+    public void startBrowserWithGoogleCom() {
+        driver.get("https://www.google.com");
+    }
+
+    @When("click on Search Button {int} time")
+    public void clickOnSearchButtonTime(int arg0) {
+        WebElement searchInput = driver.findElement(By.id("APjFqb"));
+        searchInput.sendKeys("Jiu jitsu");
+        searchInput.submit();
+    }
+
+    @Then("click on Search Button")
+    public void clickOnSearchButton() {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.quit();
+
+
+    }
+
+
+    @Given("go to web page")
+    public void goToWebPage() {
+        driver.get("https://www.facebook.com/");
+    }
+
+    @When("pass user name and pass")
+    public void passUserNameAndPass() {
+        WebElement nameInput = driver.findElement(By.id("email"));
+        nameInput.sendKeys("jovandiclazar@yahoo.com");
+        WebElement surnameInput = driver.findElement(By.id("pass"));
+        surnameInput.sendKeys("nemanmejede2");
+
+    }
+
+    @Then("click on Login")
+    public void clickOnLogin() {
+        driver.findElement(By.className("_sv4")).isDisplayed();
+    }
 }
+
