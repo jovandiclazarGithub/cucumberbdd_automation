@@ -1,6 +1,13 @@
 Feature: test first attempt
 
-  Scenario: scenario1
-    Given Start Browser with jobstoday.world website
-    When click on Search Button 5 times
-    Then close driver
+  Scenario: some test
+    Given Start Browser with google.com
+    When click on Search Button 1 time
+    Then click on Search Button
+
+ Scenario: test web element
+   Given go to web page
+   When pass user name and pass
+   Then click on Login
+
+  Scenario:
