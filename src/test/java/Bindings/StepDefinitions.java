@@ -160,5 +160,50 @@ public class StepDefinitions {
     public void clickOnLogin() {
         driver.findElement(By.className("_sv4")).isDisplayed();
     }
+
+    @Given("go to site")
+    public void goToSite() {
+        driver.get("https://www.saucedemo.com/");
+        driver.manage().window().maximize();
+    }
+
+    @When("enter user name")
+    public void enterUserName() {
+        WebElement nameInput = driver.findElement(By.id("user-name"));
+        nameInput.sendKeys("standard_user");
+
+    }
+
+    @And("enter password")
+    public void enterPassword() {
+        WebElement passInput = driver.findElement(By.id("password"));
+        passInput.sendKeys("secret_sauce");
+    }
+
+    @Then("click on Login button")
+    public void clickOnLoginButton() {
+        WebElement button = driver.findElement(By.id("login-button"));
+        button.click();
+        String title = driver.getTitle();
+        System.out.println(title);
+    }
+
+    @Given("land on amazon page")
+    public void landOnAmazonPage() {
+        String webPage = "https://www.google.com/";
+        driver.get(webPage);
+        driver.manage().window().maximize();
+    }
+
+    @When("click on the cart")
+    public void clickOnTheCart() {
+        WebElement cart = driver.findElement(By.className("goxjub"));
+        cart.click();
+    }
+
+    @Then("go back to home page")
+    public void goBackToHomePage() {
+        driver.navigate().back();
+    }
 }
 
