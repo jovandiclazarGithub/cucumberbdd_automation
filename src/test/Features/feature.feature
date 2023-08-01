@@ -10,4 +10,15 @@ Feature: test first attempt
    When pass user name and pass
    Then click on Login
 
-  Scenario:
+  Scenario: login to swag labs
+    Given go to site
+    When enter user name
+    And enter password
+    Then click on Login button
+
+  Scenario: Search article in Amazon
+    Given land on amazon page
+    When click on the cart
+    Then go back to home page
+
+
