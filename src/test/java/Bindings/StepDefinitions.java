@@ -19,6 +19,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class StepDefinitions {
@@ -205,5 +206,284 @@ public class StepDefinitions {
     public void goBackToHomePage() {
         driver.navigate().back();
     }
-}
 
+    @Given("open web page")
+    public void openWebPage() {
+        String page = "https://github.com/";
+        driver.get(page);
+    }
+
+    @And("maximize browser")
+    public void maximizeBrowser() {
+        driver.manage().window().maximize();
+    }
+
+    @When("click on the element")
+    public void clickOnTheElement() {
+        WebElement element = driver.findElement(By.xpath("/html/body/div[1]/div[1]/header/div/div[2]/div/div/a"));
+        element.click();
+    }
+
+    @And("go backward")
+    public void goBackward() {
+        driver.navigate().back();
+    }
+
+    @Then("go forward")
+    public void goForward() {
+        driver.navigate().forward();
+    }
+
+    @And("refresh page")
+    public void refreshPage() {
+        driver.navigate().refresh();
+    }
+
+    @Given("open google")
+    public void openGoogle() {
+        driver.get("https://www.google.rs/");
+    }
+
+    @When("enter something in the search box")
+    public void enterSomethingInTheSearchBox() {
+        WebElement searchBox = driver.findElement(By.id("APjFqb"));
+        searchBox.sendKeys("Last minute summer offers");
+    }
+
+    @Then("delete text")
+    public void deleteText() {
+        WebElement searchBox = driver.findElement(By.id("APjFqb"));
+        searchBox.clear();
+    }
+
+    @And("go back")
+    public void goBack() {
+        WebElement searchCTA = driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[2]/div[2]/div[5]/center/input[1]"));
+        searchCTA.click();
+        driver.navigate().back();
+    }
+
+    @Given("land on the site and maximaze window")
+    public void landOnTheSiteAndMaximazeWindow() {
+        driver.get("https://demoqa.com/");
+        driver.manage().window().maximize();
+    }
+
+    @When("select section")
+    public void selectSection() {
+        WebElement elementsSection = driver.findElement(By.className("card-up"));
+        elementsSection.click();
+    }
+
+    @And("select check box section")
+    public void selectCheckBoxSection() {
+        WebElement checkBoxSection = driver.findElement(By.id("item-1"));
+        checkBoxSection.click();
+    }
+
+    @Then("mark home check box")
+    public void markHomeCheckBox() {
+        WebElement home = driver.findElement(By.className("rct-title"));
+        home.click();
+
+    }
+
+    @Given("go to URL")
+    public void goToURL() {
+        String appURL = "https://www.cheapflights.com/";
+        driver.get(appURL);
+        WebDriverWait wait = new WebDriverWait(driver,2);
+    }
+
+    @When("check is round trip displayed")
+    public void checkIsRoundTripDisplayed() {
+        WebElement roundTrip = driver.findElement(By.className("H3mQ-input"));
+        if (roundTrip.isDisplayed()){
+            System.out.println("Button is displayed");
+        }
+        else {
+            System.out.println("Button is not displayed");
+        }
+    }
+
+    @Then("select Round trip")
+    public void selectRoundTrip() {
+        WebElement roundTrip = driver.findElement(By.className("H3mQ-input"));
+        roundTrip.click();
+    }
+
+    @When("check one way radio button")
+    public void checkOneWayRadioButton() {
+        WebElement oneWay = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div[1]/div/div/div/div[1]/div[1]/div/div[3]/div/div/label[2]/span[2]"));
+        if (oneWay.isDisplayed()){
+            oneWay.click();
+        }
+        else {
+            System.out.println("Button is broken");
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Then("select one way radio button")
+    public void selectOneWayRadioButton() {
+        driver.navigate().refresh();
+    }
+
+
+    @Given("land on the login page")
+    public void landOnTheLoginPage() {
+        driver.get("https://dev.national.nonprod.oat.tms.aws.toyota.com/");
+    }
+
+    @When("insert credentials")
+    public void insertCredentials() {
+        WebElement account190 = driver.findElement(By.xpath("//*[@id=tilesHolder]/div[2]/div/div[1]/div/div[2]"));
+        account190.click();
+//*[@id="tilesHolder"]/div[2]/div/div[1]/div/div[2]
+    }
+
+    @Then("log in")
+    public void logIn() {
+        WebElement signIn = driver.findElement(By.xpath("//*[@id=idSIButton9"));
+        signIn.click();
+        WebDriverWait wait1 = new WebDriverWait(driver, 3);
+        driver.navigate().refresh();
+    }
+
+    @Given("get page")
+    public void getPage() {
+        driver.get("https://smoothcomp.com/en");
+    }
+
+    @When("select dropdown")
+    public void selectDropdown() {
+        WebElement dropdownAbout = driver.findElement(By.xpath("/html/body/div[2]/nav/div/ul[1]/li[2]/a"));
+        dropdownAbout.click();
+        WebElement option = driver.findElement(By.xpath("/html/body/div[2]/nav/div/ul[1]/li[2]/ul/li[3]/a"));
+        option.click();
+
+    }
+
+    @Then("choose dropdown option")
+    public void chooseDropdownOption() {
+        driver.navigate().back();
+        WebDriverWait wait1 = new WebDriverWait(driver,3);
+    }
+
+    @Given("web site landing")
+    public void webSiteLanding() {
+        driver.get("https://demoqa.com/");
+        driver.manage().window().maximize();
+        WebElement joinNow = driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[1]/a/img"));
+        joinNow.click();
+    }
+
+    @When("check expacted text")
+    public void checkExpactedText() {
+        WebElement titleValidation = driver.findElement(By.className("enroll__heading"));
+        String expectedText = "Selenium Certification Training | Enroll Now | Study Online";
+        String actualText = titleValidation.getText();
+        if(actualText.equals(expectedText)){
+            System.out.println("Perfect, text is: " + expectedText);
+        }
+        else {
+            System.out.println("Hmm, this: " + actualText + "is displayed");
+        }
+    }
+
+    @Then("get home page")
+    public void getHomePage() {
+        driver.get("https://demoqa.com/");
+    }
+
+    @Given("get to buyatoyota.com")
+    public void getToBuyatoyotaCom() {
+        String appURL = "https://www.buyatoyota.com/home";
+        driver.get(appURL);
+    }
+
+    @When("see offers")
+    public void seeOffers() {
+       WebElement seeOffers = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/section/div/div/div/div/div[2]/div/div/div[1]/div/div/div/a[1]"));
+       seeOffers.click();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 3);
+        //*[@id="root"]/div/div[2]/div/section/div/div/div/div/div[2]/div/div/div[1]/div/div/div/a[1]
+    }
+
+    @Then("enter zip code and wait for dealer")
+    public void enterZipCodeAndWaitForDealer() {
+        WebElement zipCode = driver.findElement(By.xpath("//*[@id=\"modal-root\"]/div[4]/div/div[1]/section/form/div[1]/div/div/input"));
+        zipCode.click();
+        zipCode.sendKeys("90002");
+
+    }
+
+    @And("find dealer")
+    public void findDealer() {
+        WebElement find = driver.findElement(By.xpath("//*[@id=\"modal-root\"]/div[4]/div/div[1]/section/form/div[2]/button"));
+        find.click();
+        try {
+            Thread.sleep(5000); // Wait for 5 seconds
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    @Given("web page")
+    public void webPage() {
+        driver.get("https://www.buyatoyota.com/home");
+
+    }
+
+    @When("request a quote")
+    public void requestAQuote() {
+        WebElement requestQuote = driver.findElement(By.xpath("//*[@id=\"main-navigation\"]/nav/div[2]/div/div[2]/ul/li[5]/a/span"));
+        requestQuote.click();
+        driver.manage().window().maximize(); 
+    }
+
+    @Then("validate text")
+    public void validateText() {
+        WebElement validationText = driver.findElement(By.className("fs67XEFk"));
+        String actualText = validationText.getText();
+        String expectedText = "Request A Quot";
+        if (actualText.equals(expectedText)){
+            System.out.println("Test passed");
+        } else {
+            System.out.println("Test failed");
+        }
+
+    }
+
+    @Given("land on dev.reg")
+    public void landOnDevReg() {
+        driver.get("https://dev.regional.nonprod.oat.tms.aws.toyota.com/");
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("i0116")));
+    }
+
+    @When("send user and pass")
+    public void sendUserAndPass() {
+        WebElement user = driver.findElement(By.id("i0116"));
+        user.sendKeys("Region_190_User@digiscloud.com ");
+        WebElement next = driver.findElement(By.id("idSIButton9"));
+        next.click();
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("i0118")));
+        WebElement pass = driver.findElement(By.id("i0118"));
+        pass.sendKeys("!190Region!!");
+
+    }
+
+    @Then("log in succes")
+    public void logInSucces() {
+        WebElement signIn = driver.findElement(By.id("idSIButton9"));
+        signIn.click();
+
+    }
+
+}
